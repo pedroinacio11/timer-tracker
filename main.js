@@ -7,6 +7,6 @@ app.on('ready', () => {
       height: 400
     });
 
-    mainWindow.loadURL('https://www.google.com.br');
+    mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 
 });
