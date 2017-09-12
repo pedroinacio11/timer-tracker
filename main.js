@@ -1,4 +1,4 @@
-const { app, BrowserWindow }  = require('electron');
+const { app, BrowserWindow, ipcMain }  = require('electron');
 
 /* Iniciando a aplicação e abrindo a janela */
 app.on('ready', () => {
@@ -14,5 +14,27 @@ app.on('ready', () => {
 
 /* Interrependo a aplicação corretamente */
 app.on('window-all-closed', () => {
-  app.quit();
+    app.quit();
+});
+
+
+let sobreWindow = null;
+ipcMain.on('abrir-janela-sobre', () => {
+  if(sobreWindow == null){
+    sobreWindow = new BrowserWindow({
+      width: 300,
+      height: 200,
+      alwaysOnTop: true,
+      frame: false
+    });
+/* Não deixo a janela ser destruida ao clicar no 'Fechar' */
+    sobreWindow.on('closed', () => {
+      sobreWindow = null;
+    })
+  }
+    sobreWindow.loadURL(`file://${__dirname}/app/sobre.html`);
+});
+
+ipcMain.on('fechar-janela-sobre', () =>{
+  sobreWindow.close();
 });
