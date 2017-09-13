@@ -1,21 +1,18 @@
 const { ipcRenderer, shell } = require('electron');
-/* O process mostra alguns detalhes do sitemas */
-const process = require('process');
+    const process = require('process');
 
 let linkFechar = document.querySelector("#link-fechar");
-let linkGit = document.querySelector("#link-git");
+let linkTwitter = document.querySelector("#link-twitter");
 let versaoElectron = document.querySelector('#versao-electron');
 
 window.onload = function(){
-  versaoElectron.textContent = process.versions.electron;
+    versaoElectron.textContent = process.versions.electron;
 }
 
-linkFechar.addEventListener('click', function(){
-  ipcRenderer.send('fechar-janela-sobre');
+linkFechar.addEventListener('click', function () {
+    ipcRenderer.send('fechar-janela-sobre');
 })
 
-
-/* Abrir apps externos posso usar o Shell */
-linkGit.addEventListener('click', function(){
-  shell.openExternal("https://github.com/pedroinacio11");
+linkTwitter.addEventListener('click', function () {
+    shell.openExternal("https://www.twitter.com/dquintanilhas");
 })

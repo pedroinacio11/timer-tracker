@@ -1,11 +1,11 @@
 .container{
-  text-align:  center;
+    text-align: center;
 }
 
-.container p{
-  margin: 5px;
+.container p {
+    margin: 5px 0;
 }
 
 .container img{
-  width: 60px;
+    width: 50px;
 }
