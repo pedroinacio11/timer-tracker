@@ -1,11 +1,11 @@
 /* Somente para manipulação do meu DOM */
 const { ipcRenderer } = require('electron');
 /* vou usar meu timer como se fosse um modulo node */
-const timer - require('./timer');
+const timer = require('./timer');
 
 let linkSobre = document.querySelector('#link-sobre');
 let botaoPlay = document.querySelector('.botao-play');
-let tempo = documento.querySelector('.tempo');
+let tempo = document.querySelector('.tempo');
 
 linkSobre.addEventListener('click' , function(){
     ipcRenderer.send('abrir-janela-sobre');
@@ -13,10 +13,17 @@ linkSobre.addEventListener('click' , function(){
 
 
 let imgs = ['img/play-button.svg', 'img/stop-button.svg']
-botaoPlay.addEventListener('click', function(){
+let play = false;
+botaoPlay.addEventListener('click', function() {
 
+	if(play == true){
+		timer.parar();
+		play = false;
+	}else{
+		timer.iniciar(tempo);
+		play = true;
+	}
 /* Alterar minhas imagens play/stop */
 	imgs = imgs.reverse();
-	timer.iniciar(tempo);
 	botaoPlay.src = imgs[0];
 });
