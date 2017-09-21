@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain, Tray }  = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu }  = require('electron');
 const data = require('./data')
+const templateGenerator = require('./template')
 
 let tray = null;
 
@@ -12,6 +13,9 @@ app.on('ready', () => {
     });
 
     tray = new Tray(__dirname + '/app/img/favicon.png');
+      let template = templateGenerator.geraTrayTemplate();
+      let trayMenu = Menu.buildFromTemplate(template);
+      tray.setContextMenu(trayMenu);
 
     /* Passando o nosso index.html */
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);

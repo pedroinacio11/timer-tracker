@@ -6,13 +6,13 @@ module.exports = {
 
 	salvaDados(curso, tempoEstudado){
 		let arquivoDoCurso = __dirname + '/data/'+  curso + '.json';
-		
+
 		//o arquivo já existe
 		if(fs.existsSync(arquivoDoCurso)){
 			//Salva dados
 			this.adicionaTempoAoCurso(arquivoDoCurso, tempoEstudado);
 		}else{
-			
+
 		// ou acabei de criar ele..
 			this.criaArquivoDeCurso(arquivoDoCurso, {})
 			.then(() => {
@@ -49,5 +49,15 @@ module.exports = {
 
 		let arquivoDoCurso = __dirname + '/data/'+  curso + '.json';
 		return jsonfile.readFile(arquivoDoCurso);
-	}
+	},
+
+	pegaNomeDosCursos(){
+			let arquivos = fs.readdirSync(__dirname + '/data');
+			//mapeando os arquivos para tirar o .json e pegar só o nome dos arquivos
+			let cursos = arquivos.map((arquivo) => {
+				return arquivo.substr(0, arquivo.lastIndexOf('.'));
+
+			});
+				return cursos;
+		}
 }
