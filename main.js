@@ -1,5 +1,7 @@
-const { app, BrowserWindow, ipcMain }  = require('electron');
+const { app, BrowserWindow, ipcMain, Tray }  = require('electron');
 const data = require('./data')
+
+let tray = null;
 
 /* Iniciando a aplicação e abrindo a janela */
 app.on('ready', () => {
@@ -8,9 +10,11 @@ app.on('ready', () => {
       width: 600,
       height: 400
     });
+
+    tray = new Tray(__dirname + '/app/img/favicon.png');
+
     /* Passando o nosso index.html */
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
-
 });
 
 /* Interrependo a aplicação corretamente */
