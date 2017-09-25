@@ -28,7 +28,7 @@ app.on('ready', () => {
       });
 
       //abrindo devtools automaticamente
-      mainWindow.openDevTools();
+      //mainWindow.openDevTools();
       /* Passando o nosso index.html */
       mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
