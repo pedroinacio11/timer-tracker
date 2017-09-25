@@ -14,12 +14,19 @@ app.on('ready', () => {
     });
 
     tray = new Tray(__dirname + '/app/img/favicon.png');
+
       let template = templateGenerator.geraTrayTemplate(mainWindow);
       let trayMenu = Menu.buildFromTemplate(template);
       tray.setContextMenu(trayMenu);
 
-    /* Passando o nosso index.html */
-    mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+      let templateMenu = templateGenerator.geraMenuPrincipalTemplate(app);
+      let menuPrincipal = Menu.buildFromTemplate(templateMenu);
+      Menu.setApplicationMenu(menuPrincipal);
+
+      //abrindo devtools automaticamente
+      mainWindow.openDevTools();
+      /* Passando o nosso index.html */
+      mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
 
 /* Interrependo a aplicação corretamente */

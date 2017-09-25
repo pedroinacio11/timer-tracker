@@ -1,4 +1,5 @@
-const data = require('./data')
+const data = require('./data');
+const { ipcMain } = require('electron');
 
 module.exports = {
   templateInicial: null,
@@ -40,5 +41,56 @@ module.exports = {
             }
         })
         return this.templateInicial;
-      }
-}
+      },
+
+      geraMenuPrincipalTemplate(app){
+
+        let templateMenu = [
+          {
+          label: 'view',
+          submenu: [{
+            role: 'reload'
+          },
+        {
+            role: 'toggledevtools'
+        }
+      ]
+    },
+    {
+      label: 'Windows',
+      submenu: [
+        {
+          role: 'minimize'
+        },
+        {
+          role: 'close'
+        }
+      ]
+    },
+          {
+          label: 'Sobre',
+          submenu: [
+            {
+              label: 'Sobre o Track Timer',
+              click: () => {
+                //emite o evento para abrir a janela sobre .. o IpcMain está escutando!
+                ipcMain.emit('abrir-janela-sobre');
+              }
+            }
+          ]
+    }];
+          if( process.platform == 'darwin'){
+            //função unshift sempre coloca a primeira posiçaõ do array
+              templateMenu.unshift({
+                label: app.getName(),
+                submenu: [
+                  {
+                    label: 'Estou rodando no Mac!'
+                  }
+                ]
+              })
+            }
+              return templateMenu;
+          }
+
+        }

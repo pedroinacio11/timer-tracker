@@ -1,7 +1,7 @@
 /* Vou usar só para o Timer */
 const moment = require('moment');
 
-/* Uso esse cara para me comunica entre processos */
+/* Uso esse cara para me comunicar entre processos */
 const { ipcRenderer } = require('electron');
 
 let segundos;
@@ -13,7 +13,7 @@ module.exports = {
 		tempo = moment.duration(el.textContent);
 		segundos = tempo.asSeconds();
 		clearInterval(timer);
-		/* usei a arrowFunction para o this ficar fora do escopo e ser 
+		/* usei a arrowFunction para o this ficar fora do escopo e ser
 		   usado no segundosParaTempo. Em uma Funtion não funcionaria */
 		timer = setInterval(()=>{
 			segundos++;
