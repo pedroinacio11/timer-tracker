@@ -67,7 +67,7 @@ ipcRenderer.on('curso-trocado', (event, nomeCurso) => {
 
 botaoAdicionar.addEventListener('click', function() {
 
-    if(campoAdicionar.valuer == ''){
+    if(campoAdicionar.value == ''){
       console.log("Não pode adicionar um projeto vazio!");
       return;
     }
