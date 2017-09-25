@@ -58,3 +58,9 @@ botaoAdicionar.addEventListener('click', function() {
     campoAdicionar.value = '';
     ipcRenderer.send('curso-adicionado', novoCurso);
 });
+
+ipcRenderer.on('atalho-iniciar-parar', () => {
+    //disparando o evento de click para alguem
+    let click = new MouseEvent('click');
+    botaoPlay.dispatchEvent(click);
+});
