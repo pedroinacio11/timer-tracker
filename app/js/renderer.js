@@ -33,9 +33,17 @@ botaoPlay.addEventListener('click', function() {
 	if(play == true){
 		timer.parar(curso.textContent);
 		play = false;
+    new Notification('TrackTimer', {
+      body: `O projeto ${curso.textContent} foi parado!!`,
+      icon: 'img/stop-button.png'
+    });
 	}else{
 		timer.iniciar(tempo);
 		play = true;
+    new Notification('TrackTimer', {
+      body: `O projeto ${curso.textContent} foi iniciado!!`,
+      icon: 'img/play-button.png'
+    });
 	}
 /* Alterar minhas imagens play/stop */
 	imgs = imgs.reverse();
@@ -63,4 +71,6 @@ ipcRenderer.on('atalho-iniciar-parar', () => {
     //disparando o evento de click para alguem
     let click = new MouseEvent('click');
     botaoPlay.dispatchEvent(click);
+    // Usando a webApi para notificações!
+    // new Notification('Notificação!!!');
 });
