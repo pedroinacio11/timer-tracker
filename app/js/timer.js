@@ -4,7 +4,7 @@ const moment = require('moment');
 /* Uso esse cara para me comunicar entre processos */
 const { ipcRenderer } = require('electron');
 
-let segundos;
+let segundos = 0;
 let timer;
 let tempo
 
@@ -14,7 +14,7 @@ module.exports = {
 		segundos = tempo.asSeconds();
 		clearInterval(timer);
 		/* usei a arrowFunction para o this ficar fora do escopo e ser
-		   usado no segundosParaTempo. Em uma Funtion não funcionaria */
+		   usado no segundosParaTempo. Em uma Function comum não funcionaria */
 		timer = setInterval(()=>{
 			segundos++;
 			el.textContent = this.segundosParaTempo(segundos);
