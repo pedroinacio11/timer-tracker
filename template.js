@@ -75,7 +75,8 @@ module.exports = {
               click: () => {
                 //emite o evento para abrir a janela sobre .. o IpcMain está escutando!
                 ipcMain.emit('abrir-janela-sobre');
-              }
+              },
+              accelerator : 'CmdOrCtrl+I'
             }
           ]
     }];
